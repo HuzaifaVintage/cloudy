@@ -3,55 +3,450 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Coffee Website</title>
-    <link rel="stylesheet" href="style.css">
+    <title>CloudCafe | Modern Cloud Website</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            background:#f7f3ef;
+            color:#333;
+            overflow-x:hidden;
+        }
+
+        /* NAVBAR */
+
+        header{
+            background:#4e342e;
+            padding:15px 8%;
+            position:sticky;
+            top:0;
+            z-index:1000;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .navbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            color:white;
+            font-size:30px;
+            font-weight:700;
+            letter-spacing:1px;
+        }
+
+        .nav-links{
+            display:flex;
+            gap:25px;
+        }
+
+        .nav-links a{
+            color:white;
+            text-decoration:none;
+            font-weight:500;
+            position:relative;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active{
+            color:#ffcc80;
+        }
+
+        .nav-links a::after{
+            content:'';
+            position:absolute;
+            left:0;
+            bottom:-5px;
+            width:0%;
+            height:2px;
+            background:#ffcc80;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover::after{
+            width:100%;
+        }
+
+        /* HERO SECTION */
+
+        .hero{
+            min-height:90vh;
+
+            background:
+            linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1600&auto=format&fit=crop');
+
+            background-size:cover;
+            background-position:center;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            padding:40px;
+        }
+
+        .hero-content{
+            max-width:800px;
+            color:white;
+            animation:fadeIn 1.5s ease;
+        }
+
+        .hero-content h1{
+            font-size:65px;
+            margin-bottom:20px;
+            line-height:1.2;
+        }
+
+        .hero-content p{
+            font-size:20px;
+            line-height:1.9;
+            margin-bottom:35px;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:15px 35px;
+            background:#6d4c41;
+            color:white;
+            text-decoration:none;
+            border-radius:50px;
+            font-weight:600;
+            transition:0.4s;
+            box-shadow:0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover{
+            background:#ffcc80;
+            color:#4e342e;
+            transform:translateY(-5px);
+        }
+
+        /* FEATURES SECTION */
+
+        .cards-section{
+            padding:90px 8%;
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+            gap:30px;
+        }
+
+        .card{
+            background:white;
+            padding:40px 30px;
+            border-radius:22px;
+            text-align:center;
+            box-shadow:0 8px 20px rgba(0,0,0,0.08);
+            transition:0.4s;
+            animation:slideUp 1s ease;
+        }
+
+        .card:hover{
+            transform:translateY(-12px);
+            box-shadow:0 12px 28px rgba(0,0,0,0.15);
+        }
+
+        .card h2{
+            color:#5d4037;
+            margin-bottom:18px;
+            font-size:28px;
+        }
+
+        .card p{
+            color:#666;
+            line-height:1.8;
+        }
+
+        /* EXTRA SECTION */
+
+        .info-section{
+            padding:80px 10%;
+            background:#efebe9;
+        }
+
+        .info-container{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+            gap:50px;
+            align-items:center;
+        }
+
+        .info-text h2{
+            font-size:42px;
+            color:#4e342e;
+            margin-bottom:20px;
+        }
+
+        .info-text p{
+            line-height:1.9;
+            color:#555;
+            margin-bottom:18px;
+        }
+
+        .info-image img{
+            width:100%;
+            border-radius:22px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.15);
+            transition:0.4s;
+        }
+
+        .info-image img:hover{
+            transform:scale(1.03);
+        }
+
+        /* STATS */
+
+        .stats{
+            padding:70px 8%;
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+            gap:25px;
+            text-align:center;
+        }
+
+        .stat-box{
+            background:white;
+            padding:35px 20px;
+            border-radius:20px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+            transition:0.3s;
+        }
+
+        .stat-box:hover{
+            transform:translateY(-8px);
+        }
+
+        .stat-box h2{
+            font-size:42px;
+            color:#6d4c41;
+            margin-bottom:10px;
+        }
+
+        .stat-box p{
+            color:#666;
+        }
+
+        /* FOOTER */
+
+        footer{
+            background:#3e2723;
+            color:white;
+            text-align:center;
+            padding:22px;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        @keyframes slideUp{
+            from{
+                opacity:0;
+                transform:translateY(50px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            .navbar{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            .hero-content h1{
+                font-size:42px;
+            }
+
+            .hero-content p{
+                font-size:17px;
+            }
+
+            .info-text h2{
+                font-size:32px;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
 
+    <!-- HEADER -->
+
     <header>
+
         <nav class="navbar">
+
             <div class="logo">☕ CloudCafe</div>
+
             <div class="nav-links">
                 <a href="index.html" class="active">Home</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
+
         </nav>
+
     </header>
 
-    <section class="hero fade-in">
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
         <div class="hero-content">
-            <h1>Welcome to My Cloud Website</h1>
+
+            <h1>Welcome to CloudCafe</h1>
+
             <p>
-                A modern cloud computing website with smooth transitions,
-                coffee brown aesthetics, and interactive design.
+                Experience a modern cloud computing website with elegant
+                coffee-inspired design, responsive layouts, smooth animations,
+                and interactive user experience.
             </p>
+
             <a href="about.html" class="btn">Explore More</a>
+
         </div>
+
     </section>
+
+    <!-- CARDS SECTION -->
 
     <section class="cards-section">
-        <div class="card slide-up">
-            <h2>☁ Cloud Hosting</h2>
-            <p>Fast and secure hosting powered through cloud technologies.</p>
+
+        <div class="card">
+
+            <h2>☁️ Cloud Hosting</h2>
+
+            <p>
+                Fast, secure, and reliable cloud hosting solutions
+                optimized for modern web applications.
+            </p>
+
         </div>
 
-        <div class="card slide-up delay">
+        <div class="card">
+
             <h2>⚡ Smooth UI</h2>
-            <p>Modern animations and stylish coffee-inspired interface.</p>
+
+            <p>
+                Stylish coffee-themed interface with clean layouts
+                and engaging animations.
+            </p>
+
         </div>
 
-        <div class="card slide-up delay2">
-            <h2>📱 Responsive</h2>
-            <p>Works beautifully on desktop, mobile, and tablets.</p>
+        <div class="card">
+
+            <h2>📱 Fully Responsive</h2>
+
+            <p>
+                Optimized for desktop, mobile, and tablet devices
+                with seamless responsiveness.
+            </p>
+
         </div>
+
     </section>
 
+    <!-- INFO SECTION -->
+
+    <section class="info-section">
+
+        <div class="info-container">
+
+            <div class="info-text">
+
+                <h2>Modern Cloud Experience</h2>
+
+                <p>
+                    CloudCafe is designed to demonstrate professional
+                    web development concepts with modern UI/UX practices
+                    and cloud deployment techniques.
+                </p>
+
+                <p>
+                    The project combines elegant visuals, responsive
+                    sections, and smooth transitions to create a
+                    premium user experience.
+                </p>
+
+            </div>
+
+            <div class="info-image">
+
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1200&auto=format&fit=crop" alt="Coffee Image">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- STATS SECTION -->
+
+    <section class="stats">
+
+        <div class="stat-box">
+            <h2>99%</h2>
+            <p>Cloud Uptime</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>24/7</h2>
+            <p>Support Access</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>100+</h2>
+            <p>Modern Components</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>Fast</h2>
+            <p>Performance</p>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
     <footer>
+
         <p>© 2026 CloudCafe Website | Designed with Coffee Brown UI</p>
+
     </footer>
 
 </body>

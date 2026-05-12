@@ -4,48 +4,368 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - CloudCafe</title>
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            background:#f7f3ef;
+            color:#333;
+            overflow-x:hidden;
+        }
+
+        /* NAVBAR */
+
+        header{
+            background:#4e342e;
+            padding:15px 8%;
+            position:sticky;
+            top:0;
+            z-index:1000;
+            box-shadow:0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .navbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            color:white;
+            font-size:28px;
+            font-weight:700;
+        }
+
+        .nav-links{
+            display:flex;
+            gap:25px;
+        }
+
+        .nav-links a{
+            text-decoration:none;
+            color:white;
+            font-weight:500;
+            transition:0.3s;
+            position:relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active{
+            color:#ffcc80;
+        }
+
+        .nav-links a::after{
+            content:'';
+            position:absolute;
+            left:0;
+            bottom:-5px;
+            width:0%;
+            height:2px;
+            background:#ffcc80;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover::after{
+            width:100%;
+        }
+
+        /* HERO SECTION */
+
+        .page-banner{
+            height:45vh;
+            background:
+            linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1400&auto=format&fit=crop');
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            color:white;
+            padding:20px;
+        }
+
+        .page-banner h1{
+            font-size:55px;
+            margin-bottom:15px;
+            animation:fadeDown 1s ease;
+        }
+
+        .page-banner p{
+            font-size:18px;
+            max-width:650px;
+            animation:fadeUp 1.2s ease;
+        }
+
+        /* CONTACT SECTION */
+
+        .contact-section{
+            padding:80px 10%;
+        }
+
+        .contact-wrapper{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+            gap:40px;
+            align-items:center;
+        }
+
+        /* LEFT SIDE */
+
+        .contact-info h2{
+            font-size:40px;
+            color:#5d4037;
+            margin-bottom:20px;
+        }
+
+        .contact-info p{
+            color:#555;
+            line-height:1.9;
+            margin-bottom:18px;
+        }
+
+        .info-box{
+            background:white;
+            padding:20px;
+            margin-top:18px;
+            border-radius:15px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+            transition:0.3s;
+        }
+
+        .info-box:hover{
+            transform:translateY(-5px);
+        }
+
+        .info-box h3{
+            color:#6d4c41;
+            margin-bottom:8px;
+        }
+
+        /* FORM */
+
+        .contact-form{
+            background:white;
+            padding:35px;
+            border-radius:20px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .contact-form h2{
+            color:#5d4037;
+            margin-bottom:25px;
+            text-align:center;
+        }
+
+        .input-group{
+            margin-bottom:20px;
+        }
+
+        .input-group input,
+        .input-group textarea{
+            width:100%;
+            padding:15px;
+            border:none;
+            outline:none;
+            border-radius:12px;
+            background:#efebe9;
+            font-size:15px;
+        }
+
+        .input-group textarea{
+            resize:none;
+            height:140px;
+        }
+
+        .contact-form button{
+            width:100%;
+            padding:15px;
+            border:none;
+            border-radius:12px;
+            background:#6d4c41;
+            color:white;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .contact-form button:hover{
+            background:#4e342e;
+            transform:scale(1.02);
+        }
+
+        /* FOOTER */
+
+        footer{
+            background:#3e2723;
+            color:white;
+            text-align:center;
+            padding:20px;
+            margin-top:50px;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes fadeDown{
+            from{
+                opacity:0;
+                transform:translateY(-30px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        @keyframes fadeUp{
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            .navbar{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            .page-banner h1{
+                font-size:40px;
+            }
+
+            .contact-info h2{
+                font-size:32px;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
+
+    <!-- HEADER -->
 
     <header>
         <nav class="navbar">
+
             <div class="logo">☕ CloudCafe</div>
+
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="contact.html" class="active">Contact</a>
             </div>
+
         </nav>
     </header>
 
-    <section class="page-banner fade-in">
+    <!-- HERO -->
+
+    <section class="page-banner">
+
         <h1>Contact Us</h1>
-        <p>Get connected with our cloud website team.</p>
+
+        <p>
+            Connect with the CloudCafe team for collaboration,
+            cloud deployment projects, and web development ideas.
+        </p>
+
     </section>
 
-    <section class="contact-container slide-up">
-        <div class="contact-card">
-            <h2>Email</h2>
-            <p>student@email.com</p>
+    <!-- CONTACT SECTION -->
+
+    <section class="contact-section">
+
+        <div class="contact-wrapper">
+
+            <!-- LEFT SIDE -->
+
+            <div class="contact-info">
+
+                <h2>Get In Touch</h2>
+
+                <p>
+                    We would love to hear from you. Whether you have
+                    questions about cloud computing practicals,
+                    deployment, or website design, feel free to contact us.
+                </p>
+
+                <div class="info-box">
+                    <h3>📧 Email</h3>
+                    <p>student@email.com</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>📱 Phone</h3>
+                    <p>+82 10-1234-5678</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>📍 Location</h3>
+                    <p>Seoul, South Korea</p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+
+            <div class="contact-form">
+
+                <h2>Send Message</h2>
+
+                <form>
+
+                    <div class="input-group">
+                        <input type="text" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="input-group">
+                        <textarea placeholder="Write your message..." required></textarea>
+                    </div>
+
+                    <button type="submit">Send Message</button>
+
+                </form>
+
+            </div>
+
         </div>
 
-        <div class="contact-card">
-            <h2>Phone</h2>
-            <p>+82 10-1234-5678</p>
-        </div>
-
-        <div class="contact-card">
-            <h2>Location</h2>
-            <p>Seoul, South Korea</p>
-        </div>
     </section>
+
+    <!-- FOOTER -->
 
     <footer>
-        <p>© 2026 CloudCafe Website</p>
+        <p>© 2026 CloudCafe | Contact Page</p>
     </footer>
 
 </body>
